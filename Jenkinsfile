@@ -5,7 +5,7 @@ pipeline {
   }
   stages {
     
-    stage("git") {
+    stage("git clone") {
       steps {
         git branch : "main", url : "https://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@github.com/kmahieu/back-node.git"
       }
@@ -24,6 +24,12 @@ pipeline {
     }
 
     stage('npm test') {
+      steps {
+          sh "npm test"
+        }
+    }
+
+    stage('push docker') {
       steps {
           sh "npm test"
         }
